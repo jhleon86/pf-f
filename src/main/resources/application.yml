@@ -1,0 +1,16 @@
+spring:
+ h2:
+  console:
+   enabled: true
+   
+ mvc:
+  view:
+   prefix: /WEB-INF/jsp/templates/
+   suffix: .jsp
+   
+ resources:
+  chain:
+   strategy:
+    content:
+     enabled: true
+     paths: /**     
