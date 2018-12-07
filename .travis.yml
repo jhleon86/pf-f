@@ -23,8 +23,8 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis  repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: pf-f-deploy-s3
-    region: ap-northeast-2
+    bucket: plafoo-front-s3
+    region: ap-southeast-1
     skip_cleanup: true
     acl: public_read
     local_dir: deploy # before_deploy에서 생성한 디렉토리
@@ -36,12 +36,12 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: pf-f-deploy-s3 # S3 버킷
+    bucket: plafoo-front-s3 # S3 버킷
     key: plafoo-front.zip # 빌드 파일을 압축해서 전달
     bundle_type: zip
     application: plafoo-front # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
     deployment_group: plafoo-front-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
-    region: ap-northeast-2
+    region: ap-southeast-1
     wait-until-deployed: true
     on:
       repo: jhleon86/pf-f
