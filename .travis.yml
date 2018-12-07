@@ -26,7 +26,6 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
     bucket: pf-f-deploy-s3 # 6-3-3에서 생성한  S3 버킷
     region: ap-northeast-2
-    skip_cleanup: true
     acl: public_read
     wait-until-deployed: true
     on:
