@@ -1,11 +1,18 @@
 # Test
 spring:
   profiles:
-    active: local # 기본 환경 선택
+    active: local # 기본 환경 선택 
   mvc:
     view:
       prefix: /WEB-INF/jsp/templates/
       suffix: .jsp
+  datasource:
+    platform: mysql
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
 # local 환경
 ---
 spring:
