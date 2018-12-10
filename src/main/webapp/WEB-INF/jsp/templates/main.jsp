@@ -14,7 +14,7 @@
 <body>
 
 	
-	<h1>PLAFOO is under construction.</h1>
+	<h1>PLAFOO is under construction .</h1>
 
 
 
