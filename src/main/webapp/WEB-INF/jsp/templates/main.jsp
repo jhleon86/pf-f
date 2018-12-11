@@ -14,7 +14,9 @@
 <body>
 
 	
-	<h1>PLAFOO is under construction .</h1>
+	<h1>PLAFOO is under construction</h1>
+	
+	<h2>junho@plafoo.com</h2>
 
 
 
