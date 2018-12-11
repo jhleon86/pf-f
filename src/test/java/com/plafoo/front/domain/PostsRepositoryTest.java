@@ -69,10 +69,10 @@ public class PostsRepositoryTest {
         System.out.println("--------------------------");
         System.out.println(posts.getCreatedDate());
         
-        assertTrue(posts.getCreatedDate().isAfter(now));
-        assertTrue(posts.getModifiedDate().isAfter(now));
+//        assertTrue(posts.getCreatedDate().isAfter(now));
+//        assertTrue(posts.getModifiedDate().isAfter(now));
         
-//        assertTrue(posts.getCreatedDate().isBefore(now));
-//      	assertTrue(posts.getModifiedDate().isBefore(now));
+        assertTrue(posts.getCreatedDate().isBefore(now));
+      	assertTrue(posts.getModifiedDate().isBefore(now));
     }
 }
