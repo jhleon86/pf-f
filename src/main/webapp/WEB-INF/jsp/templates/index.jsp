@@ -382,7 +382,8 @@
     <script>
     
     $( document ).ready(function(){ 
-    	getLocation()
+    	getLocation();
+    	alert(session_id());
     }); 
     
 	  function getLocation() {
@@ -416,14 +417,16 @@
 			    app_id: 'fx8n9i8g'
 			    ,Location : loc
 			    ,Latitude : Latitude
-			    ,Longitude : Longitude
+			    ,Longitude : Longitude 
 	 		});
 	 	}
 	  
 	  
 	  
 	  
-	  
+	 	function session_id() {
+	 	    return /SESS\w*ID=([^;]+)/i.test(document.cookie) ? RegExp.$1 : false;
+	 	}
 	  
 	  
 	    /*

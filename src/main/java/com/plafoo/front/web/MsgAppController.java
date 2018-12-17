@@ -11,7 +11,8 @@ public class MsgAppController {
 
     @PostMapping("/initialize")
     public String initialize() {
-    	
+    	 
+ 
     	String lat = "37.5128305";
     	String lng = "127.0197909";
     	String loc = "28-4 Jamwon-dong, Seocho-gu, Seoul, South Korea";
