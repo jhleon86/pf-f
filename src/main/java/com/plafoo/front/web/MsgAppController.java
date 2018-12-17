@@ -22,7 +22,6 @@ public class MsgAppController {
     	
     	if(!visitorID.isEmpty()) {
     		visitor = Visitor.findByID(visitorID);	
-    	}else {
     		lat = visitor.getCustomAttributes().get("Latitude").toString();
     		lng = visitor.getCustomAttributes().get("longtitude").toString();
     		loc = visitor.getCustomAttributes().get("Location").toString();
