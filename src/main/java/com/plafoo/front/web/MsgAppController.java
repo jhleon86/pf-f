@@ -1,8 +1,10 @@
 package com.plafoo.front.web;
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.intercom.api.Visitor;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -10,13 +12,22 @@ import lombok.AllArgsConstructor;
 public class MsgAppController {
 
     @PostMapping("/initialize")
-    public String initialize() {
-    	 
- 
+    public String initialize(@CookieValue("intercom-id-fx8n9i8g") String visitorID) {
+    	
+    	Visitor visitor = new Visitor();
+    	
     	String lat = "37.5128305";
     	String lng = "127.0197909";
     	String loc = "28-4 Jamwon-dong, Seocho-gu, Seoul, South Korea";
     	
+    	if(!visitorID.isEmpty()) {
+    		visitor = Visitor.findByID(visitorID);	
+    	}else {
+    		lat = visitor.getCustomAttributes().get("Latitude").toString();
+    		lng = visitor.getCustomAttributes().get("longtitude").toString();
+    		loc = visitor.getCustomAttributes().get("Location").toString();
+    	}
+ 
     	StringBuilder sb = new StringBuilder();
 
     	sb.append("{\"canvas\": {");

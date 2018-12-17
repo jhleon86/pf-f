@@ -382,8 +382,7 @@
     <script>
     
     $( document ).ready(function(){ 
-    	getLocation();
-    	alert(session_id());
+    	getLocation(); 
     }); 
     
 	  function getLocation() {
@@ -415,18 +414,14 @@
 	 	function setIntercom(loc, Latitude, Longitude){
 	 		Intercom('boot', {  
 			    app_id: 'fx8n9i8g'
+			    ,Jssid : '<c:out value="${pageContext.session.id}"/>'
 			    ,Location : loc
 			    ,Latitude : Latitude
-			    ,Longitude : Longitude 
+			    ,Longitude : Longitude
 	 		});
 	 	}
 	  
-	  
-	  
-	  
-	 	function session_id() {
-	 	    return /SESS\w*ID=([^;]+)/i.test(document.cookie) ? RegExp.$1 : false;
-	 	}
+	   
 	  
 	  
 	    /*
