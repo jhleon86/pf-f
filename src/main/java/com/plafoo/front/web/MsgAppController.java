@@ -16,9 +16,9 @@ public class MsgAppController {
     	
     	Visitor visitor = new Visitor();
     	
-    	String lat = "37.5128305";
-    	String lng = "127.0197909";
-    	String loc = "28-4 Jamwon-dong, Seocho-gu, Seoul, South Korea";
+    	String lat = "30.5128305";
+    	String lng = "100.0197909";
+    	String loc = "Seoul, South Korea";
     	
     	if(!visitorID.isEmpty()) {
     		visitor = Visitor.findByID(visitorID);	
