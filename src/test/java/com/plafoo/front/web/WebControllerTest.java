@@ -25,4 +25,14 @@ public class WebControllerTest {
         //then
         assertThat(body).contains("PLAFOO");
     }
+    
+    
+//    @Test
+//    public void 지도페이지_로딩() {
+//        //when
+//        String body = this.restTemplate.getForObject("/map", String.class);
+//
+//        //then
+//        assertThat(body).contains("MAP");
+//    }
 }

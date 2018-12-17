@@ -406,15 +406,17 @@
 			).done(function(data){ 
 				alert(data.results[0].formatted_address);
 				
-				setIntercom(data.results[0].formatted_address);
+				setIntercom(data.results[0].formatted_address, g_lat, g_lng);
 			}); 
 		}
 	  
 	  
-	 	function setIntercom(loc){
+	 	function setIntercom(loc, Latitude, Longitude){
 	 		Intercom('boot', {  
 			    app_id: 'fx8n9i8g'
 			    ,Location : loc
+			    ,Latitude : Latitude
+			    ,Longitude : Longitude
 	 		});
 	 	}
 	  

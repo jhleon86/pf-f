@@ -11,13 +11,16 @@ public class MsgAppController {
 
     @PostMapping("/initialize")
     public String initialize() {
- 
+    	
+    	String lat = "37.5650172";
+    	String lng = "126.8494673";
+    	
     	StringBuilder sb = new StringBuilder();
 
     	sb.append("{\"canvas\": {");
     	sb.append("\"content\": {");
     	sb.append("\"components\": [");
-    	sb.append("{ \"type\": \"button\", \"label\": \"Check your location(map)\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"sheet\", \"url\" : \"https://plafoo.com/\"} }");
+    	sb.append("{ \"type\": \"button\", \"label\": \"Check your location(map)\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"sheet\", \"url\" : \"https://plafoo.com/map/"+lat+"/"+lng+"\"} }");
     	sb.append("]");
     	sb.append("}");
     	sb.append("}}"); 
