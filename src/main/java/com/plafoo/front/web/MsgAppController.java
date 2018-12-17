@@ -21,7 +21,7 @@ public class MsgAppController {
     	sb.append("{\"canvas\": {");
     	sb.append("\"content\": {");
     	sb.append("\"components\": [");
-    	sb.append("{ \"type\": \"text\", \"text\": \"You are on "+loc+" \", \"style\": \"header\", \"align\": \"left\"}");
+    	sb.append("{ \"type\": \"text\", \"text\": \"You are on "+loc+" \", \"style\": \"header\", \"align\": \"left\"},");
     	sb.append("{ \"type\": \"button\", \"label\": \"Check your location on the map\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"sheet\", \"url\" : \"https://plafoo.com/map/"+lat+"/"+lng+"\"} }");
     	sb.append("]");
     	sb.append("}");
