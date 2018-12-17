@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 public class MsgAppController {
 
     @PostMapping("/initialize")
-    public String initialize(@CookieValue("intercom-id-fx8n9i8g") String visitorID) {
+    public String initialize(@CookieValue(value="intercom-id-fx8n9i8g",defaultValue="") String visitorID) {
     	
     	Visitor visitor = new Visitor();
     	
