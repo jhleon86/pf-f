@@ -377,10 +377,58 @@
     <!-- Custom scripts for this template -->
     <script src="static_tmp/js/freelancer.min.js"></script>
     
+	<!-- google map api -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"></script>
     <script>
+    
+    $( document ).ready(function(){ 
+    	getLocation()
+    }); 
+    
+	  function getLocation() {
+		    if (navigator.geolocation) { 
+		        var geo = navigator.geolocation.getCurrentPosition(showPosition); 
+		    } else { 
+		    	alert("Geolocation is not supported by this browser.");
+		    }
+		}
+	  
+	  
+	  function showPosition(position) {
+			
+			g_lat = position.coords.latitude;
+			g_lng = position.coords.longitude;
+			
+			$.get("https://maps.googleapis.com/maps/api/geocode/json",
+					{latlng : position.coords.latitude+","+position.coords.longitude
+					,language : "en"  
+					,key : "AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"}
+			).done(function(data){ 
+				alert(data.results[0].formatted_address);
+				
+				setIntercom(data.results[0].formatted_address);
+			}); 
+		}
+	  
+	  
+	 	function setIntercom(loc){
+	 		Intercom('boot', {  
+			    app_id: 'fx8n9i8g'
+			    ,Location : loc
+	 		});
+	 	}
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	    /*
 	  window.intercomSettings = {
 	    app_id: "fx8n9i8g"
-	  };
+	  };  
+	    */
 	</script>
 	<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fx8n9i8g';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 	    
