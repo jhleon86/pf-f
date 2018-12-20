@@ -38,7 +38,7 @@ public class WebController {
 //    }
     
     
-    @GetMapping("/map")
+    @PostMapping("/map")
     public String map() { 
     	return "map";
     }
