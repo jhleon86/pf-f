@@ -25,7 +25,7 @@ public class MsgAppControllerTest {
     	sb.append("\"canvas\": {");
     	sb.append("\"content\": {");
     	sb.append("\"components\": [");
-    	sb.append("{ \"type\": \"button\", \"label\": \"Check your location(map)\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"sheet\", \"url\" : \"https://plafoo.com/\"} },");
+    	sb.append("{ \"type\": \"button\", \"label\": \"Check your location(map)\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"url\", \"url\" : \"https://plafoo.com/\"} },");
     	sb.append("],");
     	sb.append("},");
     	sb.append("},"); 
