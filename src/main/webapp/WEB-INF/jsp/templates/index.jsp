@@ -381,9 +381,32 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"></script>
     <script>
     
+    var vid;
+    
     $( document ).ready(function(){ 
-    	getLocation(); 
+    	//getLocation(); 
+    	
+	    
+  	  window.intercomSettings = {
+  	    app_id: "fx8n9i8g"
+  	  };  
+  	   
     }); 
+    
+    
+    var myVar = setInterval(myTimer, 1000);
+
+    function myTimer() {
+      
+    	vid = Intercom('getVisitorId'); 
+    	
+    	localStorage.setItem("vid", vid);
+    	
+    	if(typeof vid != 'undefined'){
+    		clearInterval(myVar);
+    	}
+    } 
+    
     
 	  function getLocation() {
 		    if (navigator.geolocation) { 
@@ -406,29 +429,26 @@
 			).done(function(data){ 
 				alert(data.results[0].formatted_address);
 				
-				setIntercom(data.results[0].formatted_address, g_lat, g_lng);
+				//setIntercom(data.results[0].formatted_address, g_lat, g_lng);
 			}); 
 		}
 	  
 	  
-	 	function setIntercom(loc, Latitude, Longitude){
-	 		Intercom('boot', {  
-			    app_id: 'fx8n9i8g'
-			    ,Jssid : '<c:out value="${pageContext.session.id}"/>'
-			    ,Location : loc
-			    ,Latitude : Latitude
-			    ,Longitude : Longitude
-	 		});
-	 	}
+// 	 	function setIntercom(loc, Latitude, Longitude){
+// 	 		Intercom('boot', {  
+// 			    app_id: 'fx8n9i8g'
+// 			    ,Jssid : '<c:out value="${pageContext.session.id}"/>'
+// 			    ,Location : loc
+// 			    ,Latitude : Latitude
+// 			    ,Longitude : Longitude
+// 	 		});
+// 	 	}
 	  
 	   
 	  
 	  
-	    /*
-	  window.intercomSettings = {
-	    app_id: "fx8n9i8g"
-	  };  
-	    */
+
+	    
 	</script>
 	<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fx8n9i8g';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 	    

@@ -28,12 +28,18 @@ public class WebController {
     }
     
     
-    @PostMapping("/map/{lat}/{lng}")
-    public String map(@PathVariable("lat") String lat,@PathVariable("lng") String lng, Model model) { 
-    	
-    	model.addAttribute("lat",lat);
-    	model.addAttribute("lng",lng);
-    	
+//    @PostMapping("/map/{lat}/{lng}")
+//    public String map(@PathVariable("lat") String lat,@PathVariable("lng") String lng, Model model) { 
+//    	
+//    	model.addAttribute("lat",lat);
+//    	model.addAttribute("lng",lng);
+//    	
+//    	return "map";
+//    }
+    
+    
+    @GetMapping("/map")
+    public String map() { 
     	return "map";
     }
 }
