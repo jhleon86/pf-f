@@ -1,14 +1,14 @@
 package com.plafoo.front.web;
 
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.intercom.api.Company;
+import io.intercom.api.Contact;
+import io.intercom.api.CustomAttribute;
 import io.intercom.api.Intercom;
-import io.intercom.api.Visitor;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -82,21 +82,28 @@ public class MsgAppController {
     }
     
     
-    @GetMapping("/Intercom/updateLoc/{vid}")
-    public Map getVisitorLocation(@PathVariable("vid") String vid) {
+    @PostMapping("/intercom/update")
+    public String getVisitorLocation(HttpServletRequest request) {
  
+    	String Latitude = request.getParameter("lat");
+    	String Longtitude = request.getParameter("lng");
+    	String Address = request.getParameter("loc");
+    	
     	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
+    	String ID = request.getParameter("vsid");
     	
-    	String visitorID = vid;
+    	Contact contact = new Contact();
+    	contact = Contact.findByUserID(ID);
     	
-    	Visitor visitor = new Visitor();
+    	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Latitude", Latitude));
+    	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Longtitude", Longtitude));
+    	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Address", Address));
     	
-    	visitor = visitor.findByUserID(visitorID);
-    	//visitor = Visitor.findByID(visitorID);	
     	
-    	System.out.println(visitor.toString());
-    	
+    	Contact.update(contact);
+    	 
     	return null;
     }
+ 
     
 }
