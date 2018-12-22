@@ -55,7 +55,8 @@ public class MsgAppController {
     	sb.append("{\"canvas\": {");
     	sb.append("\"content\": {");
     	sb.append("\"components\": [");
-    	sb.append("{ \"type\": \"button\", \"label\": \"Check your location on the map\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"url\", \"url\" : \"https://plafoo.com/map\"} }");
+    	sb.append("{ \"type\": \"text\", \"text\": \"Touch the button below to automatically track your location and send it to PLAFOO. Please agree to the location tracking.\", \"style\": \"header\", \"align\": \"center\" },");
+    	sb.append("{ \"type\": \"button\", \"label\": \"Show me your location on the map.\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"url\", \"url\" : \"https://plafoo.com/map\"} }");
     	sb.append("]");
     	sb.append("}");
     	sb.append("}}"); 
