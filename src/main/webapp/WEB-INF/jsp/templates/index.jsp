@@ -402,7 +402,7 @@
     	},
     	setIDInter : function(){
     		var _this = this;
-    		interval = setInterval(_this.getVsid, 1000);
+    		interval = setInterval(_this.getVsid, 2000);
     	},
     	//----getting intercom visitor id----
     	getVsid : function () {
@@ -414,13 +414,14 @@
         		
         		//브라우저 스토리지에 저장
             	localStorage.setItem("vsid", vsid);
-        		clearInterval(interval); 
+        		clearInterval(interval);
         	}
     	},
     	//-------------GPS tracking--------
     	setLocInter : function(){
     		var _this = this;
-    		setInterval(_this.getLocation, 60000);
+    		   
+    		setInterval(_this.getLocation, 120000);
     	},
     	getLocation : function(){
     		var _this = this;
