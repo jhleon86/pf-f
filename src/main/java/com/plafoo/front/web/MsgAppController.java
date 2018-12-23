@@ -2,10 +2,12 @@ package com.plafoo.front.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.intercom.api.Company;
 import io.intercom.api.Contact;
 import io.intercom.api.CustomAttribute;
 import io.intercom.api.Intercom;
@@ -55,7 +57,7 @@ public class MsgAppController {
     	sb.append("{\"canvas\": {");
     	sb.append("\"content\": {");
     	sb.append("\"components\": [");
-    	sb.append("{ \"type\": \"text\", \"text\": \"Touch the button below to automatically track your location and send it to PLAFOO. Please agree to the location tracking.\", \"style\": \"header\", \"align\": \"center\" },");
+    	sb.append("{ \"type\": \"text\", \"text\": \"Touch the button below to automatically track your location by GPS and send it to PLAFOO. Please agree to the location tracking.\", \"style\": \"header\", \"align\": \"center\" },");
     	sb.append("{ \"type\": \"button\", \"label\": \"Show me your location on the map.\", \"style\": \"primary\", \"id\": \"url_button\", \"action\": {\"type\": \"url\", \"url\" : \"https://plafoo.com/map\"} }");
     	sb.append("]");
     	sb.append("}");
@@ -84,14 +86,17 @@ public class MsgAppController {
     
     
     @PostMapping("/intercom/update")
-    public String getVisitorLocation(HttpServletRequest request) {
+    public void getVisitorLocation(HttpServletRequest request) {
  
     	String Latitude = request.getParameter("lat");
     	String Longtitude = request.getParameter("lng");
     	String Address = request.getParameter("loc");
+    	String TrakingMap = "https://plafoo.com/intercom/tracking/";
     	
     	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
     	String ID = request.getParameter("vsid");
+    	
+    	TrakingMap = TrakingMap+ID; 
     	
     	Contact contact = new Contact();
     	contact = Contact.findByUserID(ID);
@@ -99,12 +104,16 @@ public class MsgAppController {
     	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Latitude", Latitude));
     	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Longtitude", Longtitude));
     	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Address", Address));
+    	contact.addCustomAttribute(CustomAttribute.newStringAttribute("TrakingMap", TrakingMap));
     	
     	
     	Contact.update(contact);
-    	 
-    	return null;
     }
+    
+    
+
+    
+    
  
     
 }

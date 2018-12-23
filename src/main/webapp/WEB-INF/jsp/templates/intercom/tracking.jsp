@@ -19,6 +19,8 @@
 		</style>   
 	</head>
 	<body>
+		<h3 id="id">Intercom ID : ${ID}</h3>
+		<a id="conv"></a>
 		<h3 id="loca"></h3>
 		<div id="map"></div>
 	</body>
@@ -29,30 +31,27 @@
   		init : function() {
   			var _this = this;	
   			
-  			if (navigator.geolocation) { 
-  		        var geo = navigator.geolocation.getCurrentPosition(_this.showPosition);   
-  		    } else { 
-  		    	alert("Geolocation is not supported by this browser.");
-  		    }
+  			_this.showPosition();
+  			
+  			$("#conv").text(document.referrer);
+  			
+  			
   		},
-  		showPosition : function(position) {
+  		showPosition : function() {
   			var _this = this;
   			
   		  	var g_lat;
   		  	var g_lng;
   		  	var g_loctext; 
   			
-  			g_lat = position.coords.latitude;
-  			g_lng = position.coords.longitude;
+  			g_lat = ${lat};
+  			g_lng = ${lng};
   			
   			$.get("https://maps.googleapis.com/maps/api/geocode/json",
-  					{latlng : position.coords.latitude+","+position.coords.longitude
+  					{latlng : g_lat+","+g_lng
   					,language : "en"  
   					,key : "AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"}
   			).done(function(data){ 
-  				
-  				localStorage.setItem("GPS", "OK");
-  				
   				g_loctext = data.results[0].formatted_address;
   				//alert(g_loctext);
   				$("#loca").text(g_loctext);
@@ -79,7 +78,7 @@
   		},
   	} 
     </script>
-    <script src="static/js/lib/jquery.min.js"></script>
+    <script src="/static/js/lib/jquery.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0&callback=main.init"></script>
     <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fx8n9i8g';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 </html>

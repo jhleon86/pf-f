@@ -377,8 +377,7 @@
     <!-- Custom scripts for this template -->
     <script src="static_tmp/js/freelancer.min.js"></script>
     
-	<!-- google map api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"></script>
+
     
     <script>
 	//interval 
@@ -396,31 +395,110 @@
     		window.intercomSettings = {
   		  		app_id: "fx8n9i8g"
   		 	};  
-    		
-    		_this.setInter();
+    		//intercom id check
+    		_this.setIDInter();
+    		//GPS Tracking 시작-----
+    		//_this.setLocInter();
     	},
-    	setInter : function(){
+    	setIDInter : function(){
     		var _this = this;
-    		interval = setInterval(_this.getVsid, 500);
+    		interval = setInterval(_this.getVsid, 1000);
     	},
     	//----getting intercom visitor id----
     	getVsid : function () {
+    		var _this = this;
+    		
     		vsid = Intercom('getVisitorId'); 
-        	alert(vsid);
+        	//alert(vsid);
         	if(typeof vsid != 'undefined'){
+        		
         		//브라우저 스토리지에 저장
             	localStorage.setItem("vsid", vsid);
-        		clearInterval(interval);
+        		clearInterval(interval); 
         	}
     	},
+    	//-------------GPS tracking--------
+    	setLocInter : function(){
+    		var _this = this;
+    		setInterval(_this.getLocation, 60000);
+    	},
+    	getLocation : function(){
+    		var _this = this;
+    		if (navigator.geolocation && localStorage.getItem("GPS")=="OK") { 
+  		        var geo = navigator.geolocation.getCurrentPosition(showPosition);   
+  		    } else { 
+  		    	return;
+  		    }
+    	},
+//   		showPosition : function(position) {
+//   			var _this = this;
+  			
+//   		  	var g_lat;
+//   		  	var g_lng;
+//   		  	var g_loctext; 
+  			
+//   			g_lat = position.coords.latitude;
+//   			g_lng = position.coords.longitude;
+  			
+//   			$.get("https://maps.googleapis.com/maps/api/geocode/json",
+//   					{latlng : position.coords.latitude+","+position.coords.longitude
+//   					,language : "en"  
+//   					,key : "AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"}
+//   			).done(function(data){ 
+//   				g_loctext = data.results[0].formatted_address;
+
+//   				var param = new Object;
+  	  			
+//   	  			param.lat = g_lat;
+//   	  			param.lng = g_lng;
+//   	  			param.loc = g_loctext; 
+//   	  			param.vsid = localStorage.getItem("vsid");
+//   	  			console.log("aaaaaaaa"); 
+//   	  			$.post("/intercom/update",param);
+//   			}); 
+//   		},
     }
     
     main.init();
+    
+    function showPosition(position){
+		var g_lat;
+	  	var g_lng;
+	  	var g_loctext; 
+		
+		g_lat = position.coords.latitude;
+		g_lng = position.coords.longitude;
+		
+		$.get("https://maps.googleapis.com/maps/api/geocode/json",
+				{latlng : position.coords.latitude+","+position.coords.longitude
+				,language : "en"  
+				,key : "AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0"}
+		).done(function(data){ 
+			g_loctext = data.results[0].formatted_address;
+	
+			var param = new Object;
+	 			
+	 			param.lat = g_lat;
+	 			param.lng = g_lng;
+	 			param.loc = g_loctext; 
+	 			param.vsid = localStorage.getItem("vsid");
+	 			
+	 			$("#location").append("<p>lat:"+g_lat+"</p>");
+	 			$("#location").append("<p>lng:"+g_lng+"</p>");
+	 			$("#location").append("<p>loc:"+g_loctext+"</p>");
+	 			$("#location").append("<p>------------------------------------</p>");
+	 			
+	 			$.post("/intercom/update",param);
+		}); 
+	}
 	</script>
 	<!-- 	intercom script -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0&callback=main.setLocInter"></script>
 	<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fx8n9i8g';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 	
-	    
+	<div id="location">
+	
+	</div>
 
   </body>
 
