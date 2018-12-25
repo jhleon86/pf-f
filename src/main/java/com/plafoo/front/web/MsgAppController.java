@@ -79,14 +79,12 @@ public class MsgAppController {
     	sb.append("}");
     	sb.append("}}");
     	
-    	 
-    	
     	return sb.toString();
     }
     
     
     @PostMapping("/intercom/update")
-    public void getVisitorLocation(HttpServletRequest request) {
+    public void update(HttpServletRequest request) {
  
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     	LocalDateTime now = LocalDateTime.now();
@@ -96,8 +94,6 @@ public class MsgAppController {
     	String Longtitude = request.getParameter("lng");
     	String Address = request.getParameter("loc");
     	String TrakingMap = "https://plafoo.com/intercom/tracking/";
-    	
-    	
     	
     	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
     	String ID = request.getParameter("vsid");
@@ -115,6 +111,15 @@ public class MsgAppController {
     	
     	Contact.update(contact);
     }
+    
+    @PostMapping("/intercom/delete")
+    public void delete(HttpServletRequest request) {
+    	 
+    	System.out.println(request.toString());
+    }
+    
+    
+    
     
     
 
