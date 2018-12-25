@@ -119,6 +119,7 @@ public class MsgAppController {
     public boolean delete(@RequestBody Map<String, Object> request) throws IOException {
     	
     	System.out.println("/intercom/delete");
+    	System.out.println(request);
     	
     	try {
     		Map<String, Object> dataMap = (Map<String, Object>) request.get("data");   	
