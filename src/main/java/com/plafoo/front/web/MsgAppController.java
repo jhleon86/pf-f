@@ -116,7 +116,7 @@ public class MsgAppController {
     }
     
     @PostMapping("/intercom/delete")
-    public boolean delete(@RequestBody Map<String, Object> request) throws IOException {
+    public String delete(@RequestBody Map<String, Object> request) throws IOException {
     	
     	System.out.println("/intercom/delete");
     	System.out.println(request);
@@ -124,8 +124,9 @@ public class MsgAppController {
     	try {
     		Map<String, Object> dataMap = (Map<String, Object>) request.get("data");   	
         	Map<String, Object> itemMap = (Map<String, Object>) dataMap.get("item");
-     
-        	String ID = (String) itemMap.get("user_id");
+        	Map<String, Object> userMap = (Map<String, Object>) itemMap.get("user");
+        	
+        	String ID = (String) userMap.get("user_id");
         	
         	System.out.println("user_id:"+ID);
         	
@@ -138,12 +139,12 @@ public class MsgAppController {
         	
         	System.out.println("true");
         	
-        	return true;
-    	}catch (Exception e) {
+        	return ID;
+    	} catch (Exception e) {
 			// TODO: handle exception
     		
     		System.out.println("false");
-    		return false;
+    		return "false";
 		}	
     }
 }
