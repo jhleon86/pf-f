@@ -116,18 +116,25 @@ public class MsgAppController {
     }
     
     @PostMapping("/intercom/delete")
-    public void delete(@RequestBody Map<String, Object> request) throws IOException {
+    public boolean delete(@RequestBody Map<String, Object> request) throws IOException {
     	
-    	Map<String, Object> dataMap = (Map<String, Object>) request.get("data");   	
-    	Map<String, Object> itemMap = (Map<String, Object>) dataMap.get("item");
- 
-    	String ID = (String) itemMap.get("user_id");
-    	
-    	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
-    	
-    	Contact contact = new Contact();
-    	contact = Contact.findByUserID("e1a7d875-d83a-46f7-86f4-73be98a98584");
-    			
-    	Contact.delete(contact);
+    	try {
+    		Map<String, Object> dataMap = (Map<String, Object>) request.get("data");   	
+        	Map<String, Object> itemMap = (Map<String, Object>) dataMap.get("item");
+     
+        	String ID = (String) itemMap.get("user_id");
+        	
+        	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
+        	
+        	Contact contact = new Contact();
+        	contact = Contact.findByUserID(ID);
+        			
+        	Contact.delete(contact);
+        	
+        	return true;
+    	}catch (Exception e) {
+			// TODO: handle exception
+    		return false;
+		}	
     }
 }
