@@ -132,10 +132,11 @@ public class MsgAppController {
         	
         	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
         	
-        	Contact contact = new Contact();
-        	contact = Contact.findByUserID(ID);
-        			
-        	Contact.delete(contact);
+//        	Contact contact = new Contact();
+//        	contact = Contact.findByUserID(ID);
+//        	Contact.delete(contact);
+//        	
+        	Contact.deleteByUserID(ID);
         	
         	System.out.println("true");
         	
