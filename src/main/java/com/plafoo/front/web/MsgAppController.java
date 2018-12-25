@@ -1,10 +1,10 @@
 package com.plafoo.front.web;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -88,10 +88,16 @@ public class MsgAppController {
     @PostMapping("/intercom/update")
     public void getVisitorLocation(HttpServletRequest request) {
  
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    	LocalDateTime now = LocalDateTime.now();
+    	
+    	String LocationLastUpdatedTime = dtf.format(now);   
     	String Latitude = request.getParameter("lat");
     	String Longtitude = request.getParameter("lng");
     	String Address = request.getParameter("loc");
     	String TrakingMap = "https://plafoo.com/intercom/tracking/";
+    	
+    	
     	
     	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
     	String ID = request.getParameter("vsid");
@@ -105,7 +111,7 @@ public class MsgAppController {
     	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Longtitude", Longtitude));
     	contact.addCustomAttribute(CustomAttribute.newStringAttribute("Address", Address));
     	contact.addCustomAttribute(CustomAttribute.newStringAttribute("TrakingMap", TrakingMap));
-    	
+    	contact.addCustomAttribute(CustomAttribute.newStringAttribute("LocationLastUpdatedTime", LocationLastUpdatedTime));
     	
     	Contact.update(contact);
     }

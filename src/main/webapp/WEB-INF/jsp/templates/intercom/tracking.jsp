@@ -8,7 +8,7 @@
 			/* Always set the map height explicitly to define the size of the div
 			* element that contains the map. */
 			#map {
-				height: 100%;
+				height: 80%;
 			}
 			/* Optional: Makes the sample page fill the window. */
 			html, body {
@@ -19,9 +19,9 @@
 		</style>   
 	</head>
 	<body>
-		<h3 id="id">Intercom ID : ${ID}</h3>
-		<a id="conv"></a>
+		<h3 id="id">Intercom ID : ${ID}</h3> 
 		<h3 id="loca"></h3>
+		<h3 id="lastupdate">${lastUpdate}</h3>
 		<div id="map"></div>
 	</body>
 
@@ -29,13 +29,8 @@
   	 
   	var main = {
   		init : function() {
-  			var _this = this;	
-  			
-  			_this.showPosition();
-  			
-  			$("#conv").text(document.referrer);
-  			
-  			
+  			var _this = this;	 
+  			_this.showPosition(); 
   		},
   		showPosition : function() {
   			var _this = this;
@@ -80,7 +75,6 @@
     </script>
     <script src="/static/js/lib/jquery.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnR0X6g5hpsScXyp71r7R9IfeB2CWgE0&callback=main.init"></script>
-    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/fx8n9i8g';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 </html>
 
 

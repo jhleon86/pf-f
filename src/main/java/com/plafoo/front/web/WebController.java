@@ -54,10 +54,13 @@ public class WebController {
     	
     	String lat = contact.getCustomAttributes().get("Latitude").getValue().toString();
     	String lng = contact.getCustomAttributes().get("Longtitude").getValue().toString();
+    	String lastUpdate = contact.getCustomAttributes().get("LocationLastUpdatedTime").getValue().toString();
     	
     	model.addAttribute("lat", lat);
     	model.addAttribute("lng", lng);
     	model.addAttribute("ID", ID);
+    	model.addAttribute("lastUpdate",lastUpdate);
+    	   
     	
     	return "intercom/tracking";
     }
