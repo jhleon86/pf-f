@@ -17,6 +17,9 @@ public class WebController {
 	
     @GetMapping("/")
     public String main() {
+    	
+    	System.out.println("mainpageload");
+    	
     	/*o
     	model.addAttribute("posts", postsService.findAllDesc());
     	
