@@ -1,11 +1,14 @@
 package com.plafoo.front.web;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.intercom.api.Contact;
@@ -113,18 +116,18 @@ public class MsgAppController {
     }
     
     @PostMapping("/intercom/delete")
-    public void delete(HttpServletRequest request) {
-    	 
-    	System.out.println(request.toString());
-    }
-    
-    
-    
-    
-    
-
-    
-    
+    public void delete(@RequestBody Map<String, Object> request) throws IOException {
+    	
+    	Map<String, Object> dataMap = (Map<String, Object>) request.get("data");   	
+    	Map<String, Object> itemMap = (Map<String, Object>) dataMap.get("item");
  
-    
+    	String ID = (String) itemMap.get("user_id");
+    	
+    	Intercom.setToken("dG9rOjdlNGIxZGU4Xzg5OWJfNGM0M185MTJiXzQ2YTYxZTQxNmMyZDoxOjA=");
+    	
+    	Contact contact = new Contact();
+    	contact = Contact.findByUserID("e1a7d875-d83a-46f7-86f4-73be98a98584");
+    			
+    	Contact.delete(contact);
+    }
 }
