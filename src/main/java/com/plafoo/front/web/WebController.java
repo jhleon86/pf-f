@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.plafoo.front.service.PostsService;
+
 import io.intercom.api.Contact;
 import io.intercom.api.Intercom;
 import lombok.AllArgsConstructor;
@@ -13,20 +15,20 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class WebController {
 
-	//private PostsService postsService;
+	private PostsService postsService;
 	
     @GetMapping("/")
-    public String main() {
+    public String main(Model model) {
     	
     	System.out.println("mainpageload");
     	
-    	/*o
+    	
     	model.addAttribute("posts", postsService.findAllDesc());
     	
         return "main";
-        */
+        
     	
-    	return "index";
+    	//return "index";
     }
     
     
